@@ -120,11 +120,11 @@ Tipos de fuente soportados: `github`, `videolan`, `kodi`, `url-directa`.
 
 Si te sirve y quieres invitarme a un café:
 <!-- RELLENAR CON LINKS REALES -->
-- PayPal: https://paypal.me/XXX
-- Buy Me a Coffee: https://buymeacoffee.com/XXX
-- Stripe: https://buy.stripe.com/XXX
-- Lightning: `lnurl1...`
-- USDC (Ethereum/Polygon): `0x...`
+- Ko-fi: https://ko-fi.com/larbielyounoussi
+- GitHub Sponsors: https://github.com/sponsors/mlarbi84
+- PayPal: *próximamente*
+- Lightning: *próximamente*
+- USDC: *próximamente*
 
 ## Contribuir
 
