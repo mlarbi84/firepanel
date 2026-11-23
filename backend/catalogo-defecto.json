@@ -1,0 +1,231 @@
+{
+  "_comentario": "Catalogo ampliado. URLs verificadas con GitHub Releases API.",
+  "stick": {
+    "ip": "192.168.68.71",
+    "modelo": "Fire TV Stick 4K Plus",
+    "abi": "armeabi-v7a",
+    "android": "11"
+  },
+  "apps": [
+    {
+      "id": "smart-youtube-tv",
+      "nombre": "SmartTube (YouTube sin ads)",
+      "package": "com.teamsmart.videomanager.tv",
+      "url": "https://github.com/yuliskov/SmartTube/releases/download/32.80s/SmartTube_stable_32.80_armeabi-v7a.apk",
+      "fuente": {"tipo":"github","repo":"yuliskov/SmartTube","patron":"stable_.*_armeabi-v7a\\.apk$"},
+      "categoria": "streaming",
+      "descripcion": "YouTube sin anuncios, sin cuenta. Diseñado para mando TV. Open source.",
+      "orden_recomendado": 1
+    },
+    {
+      "id": "cloudstream",
+      "nombre": "CloudStream 3",
+      "package": "com.lagradost.cloudstream3",
+      "url": "https://github.com/recloudstream/cloudstream/releases/download/v4.9.1/4.9.1.apk",
+      "fuente": {"tipo":"github","repo":"recloudstream/cloudstream","patron":"\\.apk$"},
+      "categoria": "streaming",
+      "descripcion": "Alternativa open source a Stremio. Agregador con addons/providers.",
+      "orden_recomendado": 2
+    },
+    {
+      "id": "jellyfin-tv",
+      "nombre": "Jellyfin Android TV",
+      "package": "org.jellyfin.androidtv",
+      "url": "https://github.com/jellyfin/jellyfin-androidtv/releases/download/v0.20.0/jellyfin-androidtv-v0.20.0-release.apk",
+      "fuente": {"tipo":"github","repo":"jellyfin/jellyfin-androidtv","patron":"release\\.apk$"},
+      "categoria": "media-local",
+      "descripcion": "Cliente del servidor Jellyfin. Tu biblioteca multimedia propia.",
+      "orden_recomendado": 3
+    },
+    {
+      "id": "jellyfin-movil",
+      "nombre": "Jellyfin Mobile",
+      "package": "org.jellyfin.mobile",
+      "url": "https://github.com/jellyfin/jellyfin-android/releases/download/v2.7.3/jellyfin-android-v2.7.3-libre-release.apk",
+      "fuente": {"tipo":"github","repo":"jellyfin/jellyfin-android","patron":"libre-release\\.apk$"},
+      "categoria": "media-local",
+      "descripcion": "Jellyfin interfaz web, va en TV también.",
+      "orden_recomendado": 12
+    },
+    {
+      "id": "kodi",
+      "nombre": "Kodi 21 Omega",
+      "package": "org.xbmc.kodi",
+      "url": "https://mirrors.kodi.tv/releases/android/arm/kodi-21.1-Omega-armeabi-v7a.apk",
+      "fuente": {"tipo":"kodi","rama":"arm"},
+      "categoria": "media-center",
+      "descripcion": "El media center de siempre. Open source.",
+      "orden_recomendado": 4
+    },
+    {
+      "id": "vlc",
+      "nombre": "VLC",
+      "package": "org.videolan.vlc",
+      "url": "https://get.videolan.org/vlc-android/last/VLC-Android-3.7.1-armeabi-v7a.apk",
+      "fuente": {"tipo":"videolan","componente":"vlc-android","abi":"armeabi-v7a"},
+      "categoria": "tools",
+      "descripcion": "Reproductor universal. Lee cualquier formato.",
+      "orden_recomendado": 5
+    },
+    {
+      "id": "newpipe",
+      "nombre": "NewPipe (YouTube ligero)",
+      "package": "org.schabi.newpipe",
+      "url": "https://github.com/TeamNewPipe/NewPipe/releases/download/v0.29.3/NewPipe_v0.29.3.apk",
+      "fuente": {"tipo":"github","repo":"TeamNewPipe/NewPipe","patron":"NewPipe_v[0-9.]+\\.apk$"},
+      "categoria": "streaming",
+      "descripcion": "Cliente YouTube minimalista. Open source, sin tracking.",
+      "orden_recomendado": 6
+    },
+    {
+      "id": "libretube",
+      "nombre": "LibreTube",
+      "package": "com.github.libretube",
+      "url": "https://github.com/libre-tube/LibreTube/releases/download/v32.1/app-release.apk",
+      "fuente": {"tipo":"github","repo":"libre-tube/LibreTube","patron":"app-release\\.apk$"},
+      "categoria": "streaming",
+      "descripcion": "YouTube vía frontends alternativos (Piped). Privacidad total.",
+      "orden_recomendado": 7
+    },
+    {
+      "id": "twire",
+      "nombre": "Twire (Twitch sin ads)",
+      "package": "com.perflyst.twire",
+      "url": "https://github.com/twireapp/Twire/releases/download/v2.12.3/Twire-2.12.3.apk",
+      "fuente": {"tipo":"github","repo":"twireapp/Twire","patron":"Twire-.*\\.apk$"},
+      "categoria": "streaming",
+      "descripcion": "Cliente Twitch open source, sin anuncios.",
+      "orden_recomendado": 8
+    },
+    {
+      "id": "moonlight",
+      "nombre": "Moonlight Game Streaming",
+      "package": "com.limelight",
+      "url": "https://github.com/moonlight-stream/moonlight-android/releases/download/v12.2/app-nonRoot-release.apk",
+      "fuente": {"tipo":"github","repo":"moonlight-stream/moonlight-android","patron":"app-nonRoot-release\\.apk$"},
+      "categoria": "gaming",
+      "descripcion": "Streaming de juegos desde tu PC (NVIDIA GameStream / Sunshine).",
+      "orden_recomendado": 20
+    },
+    {
+      "id": "fdroid",
+      "nombre": "F-Droid Store",
+      "package": "org.fdroid.fdroid",
+      "url": "https://github.com/f-droid/fdroidclient/releases/download/1.18.0/org.fdroid.fdroid_1018050.apk",
+      "fuente": {"tipo":"github","repo":"f-droid/fdroidclient","patron":"org\\.fdroid\\.fdroid_.*\\.apk$"},
+      "categoria": "tools",
+      "descripcion": "Store de apps open source. Desde aqui metes el resto si quieres.",
+      "orden_recomendado": 30
+    },
+    {
+      "id": "material-files",
+      "nombre": "Material Files (explorador)",
+      "package": "me.zhanghai.android.files",
+      "url": "https://github.com/zhanghai/MaterialFiles/releases/download/v1.7.5/app-release-universal.apk",
+      "fuente": {"tipo":"github","repo":"zhanghai/MaterialFiles","patron":"universal\\.apk$"},
+      "categoria": "tools",
+      "descripcion": "Explorador de ficheros limpio. Material Design.",
+      "orden_recomendado": 31
+    },
+    {
+      "id": "protonvpn",
+      "nombre": "ProtonVPN",
+      "package": "ch.protonvpn.android",
+      "url": "https://github.com/ProtonVPN/android-app/releases/download/5.21.57.0/ProtonVPN-5.21.57.0.605215700.-production-vanilla-openSource-release-fdroid.apk",
+      "fuente": {"tipo":"github","repo":"ProtonVPN/android-app","patron":"openSource-release-fdroid\\.apk$"},
+      "categoria": "red",
+      "descripcion": "VPN privacy-first. Plan gratuito disponible.",
+      "orden_recomendado": 40
+    },
+    {
+      "id": "mullvad",
+      "nombre": "Mullvad VPN",
+      "package": "net.mullvad.mullvadvpn",
+      "url": "https://github.com/mullvad/mullvadvpn-app/releases/download/android/2026.12/MullvadVPN-2026.12.apk",
+      "fuente": {"tipo":"github","repo":"mullvad/mullvadvpn-app","patron":"MullvadVPN-.*\\.apk$"},
+      "categoria": "red",
+      "descripcion": "VPN serio, sin cuenta (solo numero). 5€/mes.",
+      "orden_recomendado": 41
+    },
+    {
+      "id": "dns66",
+      "nombre": "DNS66 (adblock DNS)",
+      "package": "org.jak_linux.dns66",
+      "url": "https://github.com/julian-klode/dns66/releases/download/v0.6.8/org.jak_linux.dns66_29.apk",
+      "fuente": {"tipo":"github","repo":"julian-klode/dns66","patron":"org\\.jak_linux\\.dns66_.*\\.apk$"},
+      "categoria": "red",
+      "descripcion": "Bloquea publicidad via DNS local. Sin root.",
+      "orden_recomendado": 42
+    },
+    {
+      "id": "rethink",
+      "nombre": "Rethink DNS + Firewall",
+      "package": "com.celzero.bravedns",
+      "url": "https://github.com/celzero/rethink-app/releases/download/v0.5.8/rethink-v0.5.8-izzy-armeabi-v7a.apk",
+      "fuente": {"tipo":"github","repo":"celzero/rethink-app","patron":"izzy-armeabi-v7a\\.apk$"},
+      "categoria": "red",
+      "descripcion": "DNS + firewall por app. Mas potente que DNS66.",
+      "orden_recomendado": 43
+    },
+    {
+      "id": "fennec",
+      "nombre": "Fennec (Firefox)",
+      "package": "org.mozilla.fennec_fdroid",
+      "url": "https://github.com/mozilla-mobile/fenix/releases/download/v110.0.1/fenix-110.0.1-armeabi-v7a.apk",
+      "fuente": {"tipo":"github","repo":"mozilla-mobile/fenix","patron":"armeabi-v7a\\.apk$"},
+      "categoria": "navegador",
+      "descripcion": "Firefox para Android, version F-Droid sin trackers.",
+      "orden_recomendado": 50
+    },
+    {
+      "id": "bromite",
+      "nombre": "Bromite (Chromium + adblock)",
+      "package": "org.bromite.bromite",
+      "url": "https://github.com/bromite/bromite/releases/download/108.0.5359.156/arm_ChromePublic.apk",
+      "fuente": {"tipo":"github","repo":"bromite/bromite","patron":"arm_ChromePublic\\.apk$"},
+      "categoria": "navegador",
+      "descripcion": "Chromium con adblock integrado. Version antigua pero solida.",
+      "orden_recomendado": 51
+    },
+    {
+      "id": "mihon",
+      "nombre": "Mihon (ex Tachiyomi, manga)",
+      "package": "app.mihon",
+      "url": "https://github.com/mihonapp/mihon/releases/download/v0.21.3/mihon-armeabi-v7a-v0.21.3.apk",
+      "fuente": {"tipo":"github","repo":"mihonapp/mihon","patron":"mihon-armeabi-v7a-.*\\.apk$"},
+      "categoria": "lectura",
+      "descripcion": "Lector de manga con sources comunitarias.",
+      "orden_recomendado": 60
+    },
+    {
+      "id": "librera",
+      "nombre": "Librera Reader (ebooks)",
+      "package": "com.foobnix.pro.pdf.reader",
+      "url": "https://github.com/foobnix/LibreraReader/releases/download/10.1.14/Librera.Fdroid-10.1.14-mupdf-uni.apk",
+      "fuente": {"tipo":"github","repo":"foobnix/LibreraReader","patron":"Fdroid-.*-mupdf-uni\\.apk$"},
+      "categoria": "lectura",
+      "descripcion": "Lector de libros (PDF, EPUB, DJVU...). Open source.",
+      "orden_recomendado": 61
+    },
+    {
+      "id": "kore",
+      "nombre": "Kore (mando para Kodi)",
+      "package": "org.xbmc.kore",
+      "url": "https://f-droid.org/repo/org.xbmc.kore_26.apk",
+      "fuente": {"tipo":"fdroid","package":"org.xbmc.kore"},
+      "categoria": "tools",
+      "descripcion": "Mando a distancia Kodi oficial. Para controlarlo desde el movil.",
+      "orden_recomendado": 32
+    },
+    {
+      "id": "stremio",
+      "nombre": "Stremio (requiere APK manual)",
+      "package": "com.stremio.one",
+      "url": "",
+      "fuente": {"tipo":"manual","nota":"Stremio retiró su APK publica para Android TV. Baja el APK desde https://www.stremio.com/download y arrastralo al panel para instalarlo."},
+      "categoria": "streaming",
+      "descripcion": "Descargalo desde stremio.com, arrastralo al panel (drag & drop) y se instala.",
+      "orden_recomendado": 99
+    }
+  ]
+}

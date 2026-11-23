@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0e0e10">
+<title>Fire TV · panel</title>
+<style>
+  *,*::before,*::after { box-sizing:border-box; }
+  :root {
+    --bg:#0e0e10; --bg2:#15151a; --panel:#1b1b22; --borde:#2a2a32; --borde2:#3a3a44;
+    --txt:#e8e8ec; --dim:#8a8a94; --dim2:#6a6a74;
+    --acento:#ff9900; --acento2:#ffb84d; --ok:#22c55e; --err:#ef4444; --info:#60a5fa;
+    --radio:12px; --sombra:0 2px 10px rgba(0,0,0,.4);
+  }
+  html,body { margin:0; padding:0; background:var(--bg); color:var(--txt); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI Variable","Segoe UI",system-ui,Roboto,sans-serif; -webkit-font-smoothing:antialiased; overscroll-behavior:none; }
+  body { padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }
+  a { color:var(--acento); }
+
+  header { position:sticky; top:0; z-index:5; background:rgba(14,14,16,.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--borde); padding:14px 18px; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+  header .marca { display:flex; align-items:center; gap:10px; font-weight:700; font-size:16px; letter-spacing:.3px; }
+  header .marca .punto { width:8px; height:8px; border-radius:50%; background:var(--err); box-shadow:0 0 8px var(--err); transition:background .3s; }
+  header .marca .punto.ok { background:var(--ok); box-shadow:0 0 8px var(--ok); }
+  header .marca span { color:var(--acento); }
+  header .meta { font-size:11px; color:var(--dim); text-align:right; line-height:1.4; }
+
+  main { max-width:960px; margin:0 auto; padding:16px 14px 100px; }
+
+  .tabs { display:flex; gap:6px; margin-bottom:14px; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; }
+  .tabs::-webkit-scrollbar { display:none; }
+  .tabs button { background:var(--panel); border:1px solid var(--borde); color:var(--txt); padding:8px 14px; border-radius:20px; cursor:pointer; font-size:13px; white-space:nowrap; font-family:inherit; transition:all .15s; }
+  .tabs button.activo { background:var(--acento); border-color:var(--acento); color:#000; font-weight:600; }
+  .tabs button:not(.activo):hover { border-color:var(--borde2); }
+
+  .grid { display:grid; grid-template-columns:1fr; gap:10px; }
+  @media (min-width:640px) { .grid { grid-template-columns:repeat(2,1fr); gap:12px; } }
+  @media (min-width:960px) { .grid { grid-template-columns:repeat(3,1fr); } }
+
+  .app { background:var(--panel); border:1px solid var(--borde); border-radius:var(--radio); padding:14px; display:flex; flex-direction:column; gap:8px; position:relative; transition:border-color .2s, transform .15s; }
+  .app:active { transform:scale(0.99); }
+  .app.inst { border-color:rgba(34,197,94,.3); background:linear-gradient(180deg,var(--panel) 0%,rgba(34,197,94,.03) 100%); }
+  .app .cab { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; }
+  .app h3 { margin:0; font-size:15px; font-weight:600; line-height:1.3; }
+  .app .cat { font-size:10px; color:var(--dim2); text-transform:uppercase; letter-spacing:.6px; font-weight:600; padding:3px 8px; background:var(--bg2); border-radius:10px; white-space:nowrap; }
+  .app .pkg { font-size:10.5px; color:var(--dim2); font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; word-break:break-all; opacity:.75; }
+  .app p { margin:0; font-size:12.5px; color:var(--dim); line-height:1.5; }
+  .app .acc { display:flex; gap:6px; flex-wrap:wrap; margin-top:4px; }
+  .app button { padding:8px 12px; border-radius:8px; border:0; font-size:12px; cursor:pointer; font-weight:600; font-family:inherit; transition:opacity .15s; flex:1; min-width:70px; }
+  .app button:active { opacity:.7; }
+  .btn-inst { background:var(--acento); color:#000; }
+  .btn-launch { background:var(--ok); color:#000; }
+  .btn-stop { background:var(--panel); color:var(--dim); border:1px solid var(--borde2) !important; }
+  .btn-uninst { background:transparent; color:var(--err); border:1px solid var(--err) !important; }
+
+  .flotante { position:fixed; bottom:16px; right:16px; left:16px; max-width:380px; margin:0 auto; background:var(--panel); border:1px solid var(--borde); border-radius:var(--radio); padding:14px 16px; box-shadow:var(--sombra); z-index:20; transform:translateY(120%); transition:transform .25s cubic-bezier(.3,0,.3,1); }
+  .flotante.on { transform:translateY(0); }
+  .flotante .tit { font-size:13px; font-weight:600; margin-bottom:8px; display:flex; align-items:center; gap:8px; }
+  .flotante .tit .ic { width:8px; height:8px; border-radius:50%; background:var(--info); animation:parpadeo 1.2s infinite; }
+  .flotante.ok .tit .ic { background:var(--ok); animation:none; }
+  .flotante.err .tit .ic { background:var(--err); animation:none; }
+  .flotante .log { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:11px; color:var(--dim); max-height:120px; overflow-y:auto; line-height:1.5; white-space:pre-wrap; }
+  @keyframes parpadeo { 0%,100% { opacity:1; } 50% { opacity:.3; } }
+
+  .cat-add { background:var(--panel); border:1px dashed var(--borde2); border-radius:var(--radio); padding:14px; margin-top:16px; }
+  .cat-add summary { cursor:pointer; font-size:13px; font-weight:600; color:var(--dim); user-select:none; }
+  .cat-add[open] summary { color:var(--txt); margin-bottom:10px; }
+  .cat-add .fila { display:grid; grid-template-columns:1fr; gap:6px; margin-bottom:8px; }
+  @media (min-width:640px) { .cat-add .fila { grid-template-columns:1fr 1fr; } }
+  .cat-add input { padding:8px 10px; border-radius:7px; background:var(--bg2); color:var(--txt); border:1px solid var(--borde); font-size:13px; font-family:inherit; width:100%; }
+  .cat-add input:focus { outline:none; border-color:var(--acento); }
+  .cat-add .btn-add { padding:9px 16px; background:var(--acento); color:#000; border:0; border-radius:7px; cursor:pointer; font-weight:700; font-family:inherit; font-size:13px; margin-top:4px; }
+
+  .vacio { color:var(--dim); text-align:center; padding:40px 20px; font-size:14px; }
+
+  #dropzone { position:fixed; inset:0; background:rgba(14,14,16,.95); backdrop-filter:blur(8px); z-index:50; display:none; align-items:center; justify-content:center; pointer-events:none; }
+  #dropzone.on { display:flex; }
+  #dropzone .ddcaja { border:3px dashed var(--acento); border-radius:20px; padding:60px 80px; text-align:center; }
+  #dropzone .ddcaja h2 { color:var(--acento); margin:0 0 12px; font-size:24px; }
+  #dropzone .ddcaja p { color:var(--dim); margin:0; font-size:14px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="marca"><span class="punto" id="punto"></span>fire<span>.</span>panel</div>
+  <div class="meta" id="meta">cargando...</div>
+</header>
+<main>
+  <div class="tabs" id="tabs"></div>
+  <div class="grid" id="grid"></div>
+
+  <details class="cat-add">
+    <summary>+ añadir app al catálogo</summary>
+    <div class="fila"><input id="n-id" placeholder="id (televizo)"><input id="n-nombre" placeholder="nombre visible"></div>
+    <div class="fila"><input id="n-package" placeholder="package (com.ejemplo)"><input id="n-categoria" placeholder="categoría"></div>
+    <input id="n-url" placeholder="URL del APK (oficial, ARMv7)">
+    <input id="n-descripcion" placeholder="descripción corta" style="margin-top:8px">
+    <button class="btn-add" onclick="anadir()">añadir</button>
+  </details>
+</main>
+
+<div id="dropzone">
+  <div class="ddcaja">
+    <h2>suéltalo aquí</h2>
+    <p>para instalar el APK en el stick</p>
+  </div>
+</div>
+
+<div class="flotante" id="flotante">
+  <div class="tit"><span class="ic"></span><span id="flo-tit">...</span></div>
+  <div class="log" id="flo-log"></div>
+</div>
+
+<script>
+let catalogo = null, estado = {}, filtro = 'todas', sincronizando = false;
+
+async function cargar() {
+  try {
+    sincronizando = true;
+    const c = await fetch('/api/catalogo').then(r=>r.json());
+    catalogo = c;
+    document.getElementById('meta').innerHTML =
+      `${c.stick.modelo}<br>${c.stick.ip} · ${c.stick.abi}`;
+    const e = await fetch('/api/estado').then(r=>r.json());
+    estado = Object.fromEntries(e.map(x=>[x.id, x.instalada]));
+    document.getElementById('punto').classList.add('ok');
+    render();
+  } catch(err) {
+    document.getElementById('meta').innerHTML = `<span style="color:#ef4444">sin conexión</span>`;
+    document.getElementById('punto').classList.remove('ok');
+  } finally { sincronizando = false; }
+}
+
+function render() {
+  const cats = ['todas', ...new Set(catalogo.apps.map(a=>a.categoria))];
+  document.getElementById('tabs').innerHTML = cats.map(c =>
+    `<button class="${c===filtro?'activo':''}" onclick="filtro='${c}';render()">${c}</button>`
+  ).join('');
+  const lista = (filtro==='todas' ? catalogo.apps : catalogo.apps.filter(a=>a.categoria===filtro))
+    .sort((a,b)=>(a.orden_recomendado||99)-(b.orden_recomendado||99));
+  const html = lista.map(a => {
+    const inst = estado[a.id];
+    return `
+      <div class="app ${inst?'inst':''}">
+        <div class="cab">
+          <h3>${esc(a.nombre)}</h3>
+          <span class="cat">${esc(a.categoria)}</span>
+        </div>
+        ${a.descripcion?`<p>${esc(a.descripcion)}</p>`:''}
+        <div class="pkg">${esc(a.package)}</div>
+        <div class="acc">
+          ${inst
+            ? `<button class="btn-launch" onclick="accion('launch','${a.package}','${esc(a.nombre)} lanzada')">lanzar</button>
+               <button class="btn-stop" onclick="accion('stop','${a.package}','parada')">parar</button>
+               <button class="btn-uninst" onclick="desinstalar('${a.package}','${esc(a.nombre)}','${a.id}')">quitar</button>`
+            : `<button class="btn-inst" onclick="instalar('${a.id}','${esc(a.nombre)}')">instalar</button>`
+          }
+        </div>
+      </div>`;
+  }).join('');
+  document.getElementById('grid').innerHTML = html || '<div class="vacio">nada en esta categoría</div>';
+}
+
+function esc(s) { return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function flotante(estado, tit) {
+  const el = document.getElementById('flotante');
+  el.className = 'flotante on ' + (estado||'');
+  document.getElementById('flo-tit').textContent = tit;
+  document.getElementById('flo-log').textContent = '';
+}
+function flotanteLog(msg) {
+  const el = document.getElementById('flo-log');
+  el.textContent += msg + '\n';
+  el.scrollTop = el.scrollHeight;
+}
+function flotanteCerrar(demora=2500) {
+  setTimeout(() => document.getElementById('flotante').classList.remove('on'), demora);
+}
+
+function streaming(op, params, tit, onDone) {
+  flotante('', tit);
+  const qs = new URLSearchParams({op, ...params});
+  const ev = new EventSource('/api/stream?'+qs);
+  ev.addEventListener('log', e => flotanteLog(JSON.parse(e.data)));
+  ev.addEventListener('done', async e => {
+    ev.close();
+    document.getElementById('flotante').classList.add('ok');
+    document.getElementById('flo-tit').textContent = tit + ' ✓';
+    await cargar();
+    flotanteCerrar();
+    if (onDone) onDone();
+  });
+  ev.addEventListener('error', e => {
+    ev.close();
+    try { const d = JSON.parse(e.data); flotanteLog('ERROR: '+d.mensaje); } catch { flotanteLog('conexión perdida'); }
+    document.getElementById('flotante').classList.add('err');
+    document.getElementById('flo-tit').textContent = tit + ' ✗';
+    flotanteCerrar(5000);
+  });
+}
+
+async function instalar(id, nombre) { streaming('install', {id}, `instalando ${nombre}`); }
+async function desinstalar(pkg, nombre, id) {
+  if (!confirm(`¿Quitar ${nombre}?`)) return;
+  streaming('uninstall', {package:pkg}, `quitando ${nombre}`);
+}
+async function accion(acc, pkg, msgOk) {
+  flotante('', msgOk);
+  try {
+    const r = await fetch('/api/'+acc, {method:'POST', body:JSON.stringify({package:pkg}), headers:{'Content-Type':'application/json'}}).then(r=>r.json());
+    document.getElementById('flotante').classList.add(r.ok?'ok':'err');
+    document.getElementById('flo-tit').textContent = msgOk + (r.ok?' ✓':' ✗');
+    flotanteCerrar();
+  } catch { flotanteCerrar(); }
+}
+async function anadir() {
+  const body = {
+    id: document.getElementById('n-id').value.trim(),
+    nombre: document.getElementById('n-nombre').value.trim(),
+    package: document.getElementById('n-package').value.trim(),
+    url: document.getElementById('n-url').value.trim(),
+    categoria: document.getElementById('n-categoria').value.trim() || 'otras',
+    descripcion: document.getElementById('n-descripcion').value.trim()
+  };
+  if (!body.id || !body.package || !body.url) { alert('faltan id, package o url'); return; }
+  const r = await fetch('/api/add', {method:'POST', body:JSON.stringify(body), headers:{'Content-Type':'application/json'}}).then(r=>r.json());
+  if (r.ok) {
+    ['n-id','n-nombre','n-package','n-url','n-categoria','n-descripcion'].forEach(x=>document.getElementById(x).value='');
+    cargar();
+  } else alert(r.error || 'fallo');
+}
+
+cargar();
+setInterval(() => { if (!sincronizando) fetch('/api/health').then(r=>r.json()).then(d=>document.getElementById('punto').classList.toggle('ok', d.ok)).catch(()=>document.getElementById('punto').classList.remove('ok')); }, 10000);
+
+// Drag & drop APK
+let contadorDrag = 0;
+const dz = document.getElementById('dropzone');
+document.addEventListener('dragenter', e => {
+  e.preventDefault();
+  contadorDrag++;
+  if (e.dataTransfer?.types.includes('Files')) dz.classList.add('on');
+});
+document.addEventListener('dragover', e => e.preventDefault());
+document.addEventListener('dragleave', e => {
+  contadorDrag--;
+  if (contadorDrag <= 0) { contadorDrag = 0; dz.classList.remove('on'); }
+});
+document.addEventListener('drop', async e => {
+  e.preventDefault();
+  contadorDrag = 0;
+  dz.classList.remove('on');
+  const archivos = [...(e.dataTransfer?.files || [])].filter(f => f.name.toLowerCase().endsWith('.apk'));
+  if (!archivos.length) { toastErr('arrastra un .apk'); return; }
+  for (const f of archivos) await subirApk(f);
+});
+function toastErr(m) { flotante('err', m); flotanteCerrar(3000); }
+async function subirApk(file) {
+  flotante('', `subiendo ${file.name} (${(file.size/1024/1024).toFixed(1)} MB)`);
+  flotanteLog(`${file.size} bytes`);
+  try {
+    const r = await fetch('/api/upload-apk', {
+      method: 'POST',
+      headers: { 'X-Filename': file.name, 'Content-Type': 'application/vnd.android.package-archive' },
+      body: file
+    }).then(r => r.json());
+    if (r.ok) {
+      flotanteLog('instalada OK');
+      document.getElementById('flotante').classList.add('ok');
+      document.getElementById('flo-tit').textContent = `${file.name} ✓`;
+      await cargar();
+    } else {
+      flotanteLog('ERROR: ' + (r.error || 'desconocido'));
+      document.getElementById('flotante').classList.add('err');
+    }
+  } catch (err) {
+    flotanteLog('red: ' + err.message);
+    document.getElementById('flotante').classList.add('err');
+  }
+  flotanteCerrar(5000);
+}
+</script>
+</body>
+</html>

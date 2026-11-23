@@ -1,0 +1,9 @@
+.git
+node_modules
+apks
+logs
+.env
+landing
+README.md
+LICENSE
+*.md

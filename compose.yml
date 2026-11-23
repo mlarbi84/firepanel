@@ -1,0 +1,21 @@
+# docker compose up -d
+# Abre http://<ip-de-tu-pc>:17892 desde cualquier dispositivo de tu red.
+services:
+  firepanel:
+    build: .
+    # image: ghcr.io/mlarbi84/firepanel:latest  # cuando este publicada
+    container_name: firepanel
+    # Modo host: permite hablar ADB (puerto 5555) con los sticks en tu LAN.
+    network_mode: host
+    volumes:
+      - firepanel-data:/data
+    environment:
+      FIREPANEL_PUERTO: "17892"
+      # Password opcional (basic auth). Vacio = sin auth (solo LAN).
+      FIREPANEL_AUTH: ""
+      # Auto-detectar sticks ADB en la LAN al arrancar.
+      FIREPANEL_SCAN: "1"
+    restart: unless-stopped
+
+volumes:
+  firepanel-data:

@@ -1,0 +1,19 @@
+{
+  "name": "firepanel-backend",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Backend del panel web para gestionar Fire TV / Android TV",
+  "main": "backend.mjs",
+  "scripts": {
+    "start": "node backend.mjs"
+  },
+  "license": "MIT",
+  "author": "Larbi (mlarbi84)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlarbi84/firepanel"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

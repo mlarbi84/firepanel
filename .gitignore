@@ -1,0 +1,8 @@
+node_modules/
+*.log
+.local/
+apks/
+logs/
+.DS_Store
+*.swp
+.env
