@@ -6,6 +6,11 @@
 
 ![demo](./landing/demo.gif)
 
+
+## ⚠️ Antes de nada: NO expongas firepanel a internet abierto
+
+firepanel instala, desinstala y lanza apps en tu Fire TV vía ADB. Si cualquiera llega al puerto `17892`, cualquiera puede trastear tus sticks. Mantenlo en **LAN** o detrás de una **VPN** (Tailscale/WireGuard) o un **tunnel con auth** (Cloudflare Access). Detalles en [`SECURITY.md`](./SECURITY.md).
+
 ## Qué hace
 
 - **Instala APKs** en tu Fire TV / Android TV con un clic (sideload via ADB)

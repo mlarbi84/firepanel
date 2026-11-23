@@ -99,7 +99,26 @@ async function shell(cmd) {
   return r.out.trim();
 }
 
+// Nombres de paquete Android: letras, digitos, puntos, guiones bajos.
+// Si llega algo distinto, abortamos — asi no se puede inyectar shell en adb.
+const PKG_SEGURO = /^[a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z][a-zA-Z0-9_]*)+$/;
+function validarPkg(pkg) {
+  if (typeof pkg !== 'string' || !PKG_SEGURO.test(pkg) || pkg.length > 160) {
+    throw new Error(`package invalido: ${JSON.stringify(pkg)}`);
+  }
+  return pkg;
+}
+// IDs del catalogo: letras, digitos, guion y guion-bajo. Mismo motivo.
+const ID_SEGURO = /^[a-zA-Z0-9][a-zA-Z0-9_-]{0,80}$/;
+function validarId(id) {
+  if (typeof id !== 'string' || !ID_SEGURO.test(id)) {
+    throw new Error(`id invalido: ${JSON.stringify(id)}`);
+  }
+  return id;
+}
+
 async function appInstalada(pkg) {
+  validarPkg(pkg);
   const o = await shell(`pm list packages ${pkg}`);
   return o.split('\n').some(l => l.trim() === `package:${pkg}`);
 }
@@ -176,6 +195,7 @@ async function resolverUrl(app, sse) {
 }
 
 async function instalar(id, sse) {
+  validarId(id);
   const c = leerCatalogo();
   const app = c.apps.find(a => a.id === id);
   if (!app) throw new Error(`id desconocido: ${id}`);
@@ -203,6 +223,7 @@ async function instalar(id, sse) {
 }
 
 async function desinstalar(pkg, sse) {
+  validarPkg(pkg);
   await conectar();
   sse?.(`stick conectado`);
   const dev = STICK_DEV();
@@ -212,11 +233,13 @@ async function desinstalar(pkg, sse) {
 }
 
 async function lanzar(pkg) {
+  validarPkg(pkg);
   await conectar();
   const r = await shell(`monkey -p ${pkg} -c android.intent.category.LAUNCHER 1`);
   return { ok: !r.toLowerCase().includes('error'), salida: r };
 }
 async function parar(pkg) {
+  validarPkg(pkg);
   await conectar();
   await shell(`am force-stop ${pkg}`);
   return { ok: true };
