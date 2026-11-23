@@ -122,7 +122,7 @@ Si te sirve y quieres invitarme a un café:
 <!-- RELLENAR CON LINKS REALES -->
 - Ko-fi: https://ko-fi.com/larbielyounoussi
 - GitHub Sponsors: https://github.com/sponsors/mlarbi84
-- PayPal: *próximamente*
+- PayPal: https://paypal.me/mlarbi84
 - Lightning: *próximamente*
 - USDC: *próximamente*
 
