@@ -5,7 +5,8 @@
   "description": "Backend del panel web para gestionar Fire TV / Android TV",
   "main": "backend.mjs",
   "scripts": {
-    "start": "node backend.mjs"
+    "start": "node backend.mjs",
+    "test": "node --test 'test/*.test.mjs'"
   },
   "license": "MIT",
   "author": "Larbi (mlarbi84)",

@@ -23,6 +23,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { pipeline } from 'node:stream/promises';
 import os from 'node:os';
+import { validarPkg, validarId } from './validacion.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CATALOGO = path.join(__dirname, 'catalogo.json');
@@ -97,24 +98,6 @@ async function shell(cmd) {
   const dev = STICK_DEV();
   const r = await adbSync(['-s', dev, 'shell', cmd]);
   return r.out.trim();
-}
-
-// Nombres de paquete Android: letras, digitos, puntos, guiones bajos.
-// Si llega algo distinto, abortamos — asi no se puede inyectar shell en adb.
-const PKG_SEGURO = /^[a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z][a-zA-Z0-9_]*)+$/;
-function validarPkg(pkg) {
-  if (typeof pkg !== 'string' || !PKG_SEGURO.test(pkg) || pkg.length > 160) {
-    throw new Error(`package invalido: ${JSON.stringify(pkg)}`);
-  }
-  return pkg;
-}
-// IDs del catalogo: letras, digitos, guion y guion-bajo. Mismo motivo.
-const ID_SEGURO = /^[a-zA-Z0-9][a-zA-Z0-9_-]{0,80}$/;
-function validarId(id) {
-  if (typeof id !== 'string' || !ID_SEGURO.test(id)) {
-    throw new Error(`id invalido: ${JSON.stringify(id)}`);
-  }
-  return id;
 }
 
 async function appInstalada(pkg) {

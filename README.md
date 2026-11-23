@@ -1,5 +1,11 @@
 # firepanel
 
+[![tests](https://github.com/mlarbi84/firepanel/actions/workflows/test.yml/badge.svg)](https://github.com/mlarbi84/firepanel/actions/workflows/test.yml)
+[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+[![docker](https://img.shields.io/badge/docker-ready-blue.svg)](./Dockerfile)
+
+
+
 **Panel web para gestionar tu Fire TV, Android TV o Chromecast rooteado.** Instala apps que Amazon no te deja, lanza, mata, desinstala. Sin tocar el mando. Desde el móvil, el portátil o el navegador.
 
 > Hecho para ti y para quien quiera copiarlo. MIT. Open source. Autohospedado.
