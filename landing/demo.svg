@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 440" width="100%">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#1b1b22"/><stop offset="1" stop-color="#15151a"/>
+          </linearGradient>
+          <linearGradient id="gfire" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#ff9900"/><stop offset="1" stop-color="#ffb84d"/>
+          </linearGradient>
+        </defs>
+        <rect width="720" height="440" rx="14" fill="url(#g1)" stroke="#2a2a32"/>
+        <!-- barra superior -->
+        <rect x="0" y="0" width="720" height="48" rx="14" fill="#15151a"/>
+        <rect x="0" y="34" width="720" height="14" fill="#15151a"/>
+        <circle cx="22" cy="24" r="5" fill="#ff5f56"/>
+        <circle cx="42" cy="24" r="5" fill="#ffbd2e"/>
+        <circle cx="62" cy="24" r="5" fill="#27c93f"/>
+        <circle cx="96" cy="24" r="4" fill="#22c55e"/>
+        <text x="110" y="28" fill="#e8e8ec" font-family="system-ui" font-size="12" font-weight="700">fire<tspan fill="#ff9900">.</tspan>panel</text>
+        <text x="630" y="28" fill="#6b6b78" font-family="system-ui" font-size="10">Fire TV · 192.168.68.71</text>
+        <!-- tabs -->
+        <g font-family="system-ui" font-size="10" font-weight="600">
+          <rect x="18" y="62" width="64" height="24" rx="12" fill="#ff9900"/>
+          <text x="50" y="78" text-anchor="middle" fill="#000">todas</text>
+          <rect x="88" y="62" width="76" height="24" rx="12" fill="#1b1b22" stroke="#2a2a32"/>
+          <text x="126" y="78" text-anchor="middle" fill="#e8e8ec">streaming</text>
+          <rect x="170" y="62" width="60" height="24" rx="12" fill="#1b1b22" stroke="#2a2a32"/>
+          <text x="200" y="78" text-anchor="middle" fill="#e8e8ec">tools</text>
+          <rect x="236" y="62" width="40" height="24" rx="12" fill="#1b1b22" stroke="#2a2a32"/>
+          <text x="256" y="78" text-anchor="middle" fill="#e8e8ec">red</text>
+        </g>
+        <!-- apps grid -->
+        <g font-family="system-ui">
+          <!-- card 1: SmartTube instalada -->
+          <rect x="18" y="104" width="220" height="100" rx="10" fill="#1b1b22" stroke="#22c55e" stroke-opacity=".3"/>
+          <text x="32" y="124" font-size="12" font-weight="700" fill="#e8e8ec">SmartTube</text>
+          <rect x="178" y="112" width="56" height="16" rx="8" fill="#15151a"/>
+          <text x="206" y="124" text-anchor="middle" font-size="8" fill="#6b6b78" font-weight="700">STREAMING</text>
+          <text x="32" y="142" font-size="10" fill="#8a8a94">YouTube sin anuncios</text>
+          <text x="32" y="156" font-size="9" font-family="ui-monospace" fill="#6b6b78">com.teamsmart.videomanager.tv</text>
+          <rect x="32" y="170" width="52" height="22" rx="6" fill="#22c55e"/>
+          <text x="58" y="184" text-anchor="middle" font-size="10" font-weight="700" fill="#000">lanzar</text>
+          <rect x="90" y="170" width="46" height="22" rx="6" fill="transparent" stroke="#3a3a44"/>
+          <text x="113" y="184" text-anchor="middle" font-size="10" font-weight="600" fill="#8a8a94">parar</text>
+          <rect x="142" y="170" width="52" height="22" rx="6" fill="transparent" stroke="#ef4444"/>
+          <text x="168" y="184" text-anchor="middle" font-size="10" font-weight="600" fill="#ef4444">quitar</text>
+
+          <!-- card 2: CloudStream por instalar -->
+          <rect x="250" y="104" width="220" height="100" rx="10" fill="#1b1b22" stroke="#2a2a32"/>
+          <text x="264" y="124" font-size="12" font-weight="700" fill="#e8e8ec">CloudStream 3</text>
+          <rect x="406" y="112" width="56" height="16" rx="8" fill="#15151a"/>
+          <text x="434" y="124" text-anchor="middle" font-size="8" fill="#6b6b78" font-weight="700">STREAMING</text>
+          <text x="264" y="142" font-size="10" fill="#8a8a94">Alternativa open source a Stremio</text>
+          <text x="264" y="156" font-size="9" font-family="ui-monospace" fill="#6b6b78">com.lagradost.cloudstream3</text>
+          <rect x="264" y="170" width="190" height="22" rx="6" fill="url(#gfire)"/>
+          <text x="359" y="184" text-anchor="middle" font-size="10" font-weight="700" fill="#000">instalar</text>
+
+          <!-- card 3: Jellyfin -->
+          <rect x="482" y="104" width="220" height="100" rx="10" fill="#1b1b22" stroke="#22c55e" stroke-opacity=".3"/>
+          <text x="496" y="124" font-size="12" font-weight="700" fill="#e8e8ec">Jellyfin Android TV</text>
+          <rect x="628" y="112" width="68" height="16" rx="8" fill="#15151a"/>
+          <text x="662" y="124" text-anchor="middle" font-size="8" fill="#6b6b78" font-weight="700">MEDIA-LOCAL</text>
+          <text x="496" y="142" font-size="10" fill="#8a8a94">Tu biblioteca multimedia</text>
+          <text x="496" y="156" font-size="9" font-family="ui-monospace" fill="#6b6b78">org.jellyfin.androidtv</text>
+          <rect x="496" y="170" width="52" height="22" rx="6" fill="#22c55e"/>
+          <text x="522" y="184" text-anchor="middle" font-size="10" font-weight="700" fill="#000">lanzar</text>
+          <rect x="554" y="170" width="46" height="22" rx="6" fill="transparent" stroke="#3a3a44"/>
+          <text x="577" y="184" text-anchor="middle" font-size="10" font-weight="600" fill="#8a8a94">parar</text>
+          <rect x="606" y="170" width="52" height="22" rx="6" fill="transparent" stroke="#ef4444"/>
+          <text x="632" y="184" text-anchor="middle" font-size="10" font-weight="600" fill="#ef4444">quitar</text>
+
+          <!-- card 4: VLC por instalar -->
+          <rect x="18" y="218" width="220" height="100" rx="10" fill="#1b1b22" stroke="#2a2a32"/>
+          <text x="32" y="238" font-size="12" font-weight="700" fill="#e8e8ec">VLC</text>
+          <rect x="196" y="226" width="38" height="16" rx="8" fill="#15151a"/>
+          <text x="215" y="238" text-anchor="middle" font-size="8" fill="#6b6b78" font-weight="700">TOOLS</text>
+          <text x="32" y="256" font-size="10" fill="#8a8a94">Reproductor universal</text>
+          <text x="32" y="270" font-size="9" font-family="ui-monospace" fill="#6b6b78">org.videolan.vlc</text>
+          <rect x="32" y="284" width="190" height="22" rx="6" fill="url(#gfire)"/>
+          <text x="127" y="298" text-anchor="middle" font-size="10" font-weight="700" fill="#000">instalar</text>
+
+          <!-- card 5: Kodi instalada -->
+          <rect x="250" y="218" width="220" height="100" rx="10" fill="#1b1b22" stroke="#22c55e" stroke-opacity=".3"/>
+          <text x="264" y="238" font-size="12" font-weight="700" fill="#e8e8ec">Kodi 21 Omega</text>
+          <rect x="406" y="226" width="56" height="16" rx="8" fill="#15151a"/>
+          <text x="434" y="238" text-anchor="middle" font-size="8" fill="#6b6b78" font-weight="700">MEDIA-CENTER</text>
+          <text x="264" y="256" font-size="10" fill="#8a8a94">Media center clásico</text>
+          <text x="264" y="270" font-size="9" font-family="ui-monospace" fill="#6b6b78">org.xbmc.kodi</text>
+          <rect x="264" y="284" width="52" height="22" rx="6" fill="#22c55e"/>
+          <text x="290" y="298" text-anchor="middle" font-size="10" font-weight="700" fill="#000">lanzar</text>
+          <rect x="322" y="284" width="46" height="22" rx="6" fill="transparent" stroke="#3a3a44"/>
+          <text x="345" y="298" text-anchor="middle" font-size="10" font-weight="600" fill="#8a8a94">parar</text>
+          <rect x="374" y="284" width="52" height="22" rx="6" fill="transparent" stroke="#ef4444"/>
+          <text x="400" y="298" text-anchor="middle" font-size="10" font-weight="600" fill="#ef4444">quitar</text>
+
+          <!-- card 6: NewPipe por instalar -->
+          <rect x="482" y="218" width="220" height="100" rx="10" fill="#1b1b22" stroke="#2a2a32"/>
+          <text x="496" y="238" font-size="12" font-weight="700" fill="#e8e8ec">NewPipe</text>
+          <rect x="632" y="226" width="64" height="16" rx="8" fill="#15151a"/>
+          <text x="664" y="238" text-anchor="middle" font-size="8" fill="#6b6b78" font-weight="700">STREAMING</text>
+          <text x="496" y="256" font-size="10" fill="#8a8a94">YouTube ligero sin tracking</text>
+          <text x="496" y="270" font-size="9" font-family="ui-monospace" fill="#6b6b78">org.schabi.newpipe</text>
+          <rect x="496" y="284" width="190" height="22" rx="6" fill="url(#gfire)"/>
+          <text x="591" y="298" text-anchor="middle" font-size="10" font-weight="700" fill="#000">instalar</text>
+        </g>
+        <!-- toast logs -->
+        <g>
+          <rect x="18" y="340" width="684" height="82" rx="10" fill="#15151a" stroke="#2a2a32"/>
+          <circle cx="36" cy="360" r="4" fill="#ff9900">
+            <animate attributeName="opacity" values="1;.3;1" dur="1.4s" repeatCount="indefinite"/>
+          </circle>
+          <text x="50" y="364" font-family="system-ui" font-size="12" font-weight="700" fill="#e8e8ec">instalando CloudStream 3</text>
+          <text x="36" y="384" font-family="ui-monospace" font-size="10" fill="#8a8a94">stick conectado</text>
+          <text x="36" y="398" font-family="ui-monospace" font-size="10" fill="#8a8a94">resolviendo GitHub Releases: recloudstream/cloudstream</text>
+          <text x="36" y="412" font-family="ui-monospace" font-size="10" fill="#22c55e">descargando 24.1/42.8 MB (56%)</text>
+        </g>
+      </svg>

@@ -10,7 +10,9 @@
 
 > Hecho para ti y para quien quiera copiarlo. MIT. Open source. Autohospedado.
 
-![demo](./landing/demo.gif)
+<p align="center"><img src="./landing/demo.svg" alt="firepanel demo" width="720"></p>
+
+
 
 
 ## ⚠️ Antes de nada: NO expongas firepanel a internet abierto
